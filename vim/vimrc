@@ -1,0 +1,121 @@
+" INSTALL vim-enhanced IN FEDORA.
+" Install vim-plug(Plugin Manager) => https://github.com/junegunn/vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Specify a directory for plugins
+" - Avoid using standard Vim directory names like 'plugin'
+call plug#begin('~/.vim/plugged')
+
+" Make sure you use single quotes
+
+" Put plugin here
+
+Plug 'sheerun/vim-polyglot' " Syntax Highlighting
+Plug 'pseewald/vim-anyfold' " Language agnostic plugin for folding and motion based on indentation
+Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
+Plug 'drewtempelmeyer/palenight.vim' " Color Scheme
+Plug 'skywind3000/asyncrun.vim', {'for': 'python'} "For run command
+Plug 'scrooloose/nerdtree' " NERDTree
+Plug 'Xuyuanp/nerdtree-git-plugin' " Show git status flag
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Sexy NERDTree icon.
+Plug 'ryanoasis/vim-devicons' " Always be last one. Use for show sexy icon.
+
+" End
+" Initialize plugin system
+call plug#end()
+
+" Reload .vimrc and :PlugInstall to install plugins.
+
+set nocompatible
+filetype plugin indent on
+syntax on
+set t_Co=24
+" Hybrid number and Automatic toggling between line number modes
+" When enter insert mode or buffer lose focus show absolute number
+" Other time shows hybrid numbers.
+:set number relativenumber
+
+:augroup numbertoggle
+:  autocmd!
+:  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+:  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+:augroup END
+
+" Control the position of the new window
+:set splitbelow
+:set splitright
+
+" Move around split with CTRL + standard VIM movment key
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" For folding plugin
+autocmd Filetype * AnyFoldActivate               " activate for all filetypes
+set foldlevel=99 " Open all folds
+hi Folded term=underline
+let g:anyfold_identify_comments=2
+
+" Enable folding with the spacebar
+nnoremap <space> za
+
+" Enable syntax highlighting for python(with polygot)
+let g:python_highlight_all = 1
+
+" Set encoding to UTF-8
+set encoding=utf-8
+
+" === Search === "
+" ignore case when searching
+set ignorecase
+
+" if the search string has an upper case letter in it, the search will be case sensitive
+set smartcase
+
+" Automatically re-read file if a change was detected outside of vim
+set autoread
+
+" Yank and paste with the system clipboard
+set clipboard=unnamed
+
+" Hides buffers instead of closing them
+set hidden
+
+" Color Scheme
+set background=dark
+colorscheme palenight
+
+" NERDTree CONFIGURATION
+" Custom Icon for nerdtree-git-plugin
+let g:NERDTreeIndicatorMapCustom = { 
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
+" Toggle NERDTree with <F5>
+map <F5> :NERDTreeToggle<CR>
+
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Open a NERDTree automatically when vim starts up if no files were specified
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Ignore files in NERDTree
+let NERDTreeIgnore=['\.pyc$', '\~$']
+
+" FOR COC
