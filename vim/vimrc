@@ -14,6 +14,9 @@ call plug#begin('~/.vim/plugged')
 
 " Put plugin here
 
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " Markdown Preview
 Plug 'sheerun/vim-polyglot' " Syntax Highlighting
 Plug 'pseewald/vim-anyfold' " Language agnostic plugin for folding and motion based on indentation
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
@@ -30,10 +33,11 @@ call plug#end()
 
 " Reload .vimrc and :PlugInstall to install plugins.
 
-set nocompatible
+set nocompatible " Be Vi Improved
 filetype plugin indent on
-syntax on
-set t_Co=24
+syntax on 
+set t_Co=24 " Set truecolor
+set showcmd " Show command that you type
 " Hybrid number and Automatic toggling between line number modes
 " When enter insert mode or buffer lose focus show absolute number
 " Other time shows hybrid numbers.
@@ -55,14 +59,17 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
+" Change the leader from \ to ,
+let mapleader="\,"
+
 " For folding plugin
 autocmd Filetype * AnyFoldActivate               " activate for all filetypes
 set foldlevel=99 " Open all folds
 hi Folded term=underline
 let g:anyfold_identify_comments=2
 
-" Enable folding with the spacebar
-nnoremap <space> za
+" Enable folding with the space
+nnoremap <Space> za
 
 " Enable syntax highlighting for python(with polygot)
 let g:python_highlight_all = 1
@@ -118,4 +125,40 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Ignore files in NERDTree
 let NERDTreeIgnore=['\.pyc$', '\~$']
 
-" FOR COC
+" For Markdown Preview
+
+" set to 1, nvim will open the preview window after entering the markdown buffer
+" default: 0
+let g:mkdp_auto_start = 1
+" options for markdown render
+" mkit: markdown-it options for render
+" katex: katex options for math
+" uml: markdown-it-plantuml options
+" maid: mermaid options
+" disable_sync_scroll: if disable sync scroll, default 0
+" sync_scroll_type: 'middle', 'top' or 'relative', default value is 'middle'
+"   middle: mean the cursor position alway show at the middle of the preview page
+"   top: mean the vim top viewport alway show at the top of the preview page
+"   relative: mean the cursor position alway show at the relative positon of the preview page
+" hide_yaml_meta: if hide yaml metadata, default is 1
+" sequence_diagrams: js-sequence-diagrams options
+let g:mkdp_preview_options = {
+    \ 'mkit': {},
+    \ 'katex': {},
+    \ 'uml': {},
+    \ 'maid': {},
+    \ 'disable_sync_scroll': 0,
+    \ 'sync_scroll_type': 'middle',
+    \ 'hide_yaml_meta': 1,
+    \ 'sequence_diagrams': {}
+    \ }
+
+" Mapping for Markdown Preview
+nmap mp <Plug>MarkdownPreview
+nmap mps <Plug>MarkdownPreviewStop
+
+" For vim-airline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
+let g:airline_theme='simple'

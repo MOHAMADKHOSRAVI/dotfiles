@@ -1,4 +1,4 @@
-# Personal Configuration
+# My Dotfiles
 I use this **[tutorial](https://blog.ghost.org/markdown/)** for study.
 
 ## Using vim for different languages:
