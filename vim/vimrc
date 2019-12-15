@@ -1,3 +1,11 @@
+""""""""""""""""DEPENDENCY""""""""""""""""""""""""
+" You need to:
+" 1 - dnf install the_silver_searcher => ag => ctrl-p
+" 2 - install node.js and yarn for markdown preview and other
+" things
+" 3 - python for lots of things
+" 4 - some kinda font for icon and ... in NERDTree
+"""""""""""""""""""""""END"""""""""""""""""""""""""
 " INSTALL vim-enhanced IN FEDORA.
 " Install vim-plug(Plugin Manager) => https://github.com/junegunn/vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -14,6 +22,7 @@ call plug#begin('~/.vim/plugged')
 
 " Put plugin here
 
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " Markdown Preview
@@ -154,11 +163,27 @@ let g:mkdp_preview_options = {
     \ }
 
 " Mapping for Markdown Preview
-nmap mp <Plug>MarkdownPreview
-nmap mps <Plug>MarkdownPreviewStop
+nmap <leader>mp <Plug>MarkdownPreview
+nmap <leader>mps <Plug>MarkdownPreviewStop
 
 " For vim-airline
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#left_sep = ' '
 let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_theme='simple'
+
+" For CtrlP
+" The Silver Searcher
+if executable('ag')
+  " Use ag over grep
+  set grepprg=ag\ --nogroup\ --nocolor
+
+  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+
+  " ag is fast enough that CtrlP doesn't need to cache
+  let g:ctrlp_use_caching = 0
+endif
+
+" map uc to grep word under cursor
+nnoremap <leader>uc :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
