@@ -1,11 +1,3 @@
-""""""""""""""""DEPENDENCY""""""""""""""""""""""""
-" You need to:
-" 1 - dnf install the_silver_searcher => ag => ctrl-p
-" 2 - install node.js and yarn for markdown preview and other
-" things
-" 3 - python for lots of things
-" 4 - some kinda font for icon and ... in NERDTree
-"""""""""""""""""""""""END"""""""""""""""""""""""""
 " INSTALL vim-enhanced IN FEDORA.
 " Install vim-plug(Plugin Manager) => https://github.com/junegunn/vim-plug
 if empty(glob('~/.vim/autoload/plug.vim'))
