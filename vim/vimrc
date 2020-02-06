@@ -35,7 +35,9 @@ call plug#end()
 " Reload .vimrc and :PlugInstall to install plugins.
 
 set nocompatible " Be Vi Improved
-filetype plugin indent on
+filetype on
+filetype plugin on
+filetype indent on
 syntax on 
 set t_Co=24 " Set truecolor
 set showcmd " Show command that you type
@@ -93,6 +95,9 @@ set clipboard=unnamed
 
 " Hides buffers instead of closing them
 set hidden
+
+" Enable mouse
+"set mouse=a
 
 " Color Scheme
 set background=dark
@@ -166,7 +171,7 @@ let g:airline_theme='simple'
 
 " For CtrlP
 " CtrlP + ag and fzf + repgrep are very close plugin
-" but fzf also is a sell fuzzy finder. choose whatever you want
+" but fzf also is a shell fuzzy finder. choose whatever you want
 " fzf + repgrep has dependency that i don't like.
 " The Silver Searcher
 if executable('ag')
