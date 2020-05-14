@@ -13,10 +13,11 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 " Put plugin here
-
+Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'neomake/neomake'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " Markdown Preview
 Plug 'sheerun/vim-polyglot' " Syntax Highlighting
 Plug 'pseewald/vim-anyfold' " Language agnostic plugin for folding and motion based on indentation
@@ -102,6 +103,12 @@ set hidden
 " Color Scheme
 set background=dark
 colorscheme palenight
+
+" Fugitive CONFIGURATION
+let g:airline_section_b = '%{FugitiveStatusline()}'
+
+" Neomake(Linter)
+call neomake#configure#automake('nrwi', 500)
 
 " NERDTree CONFIGURATION
 " Custom Icon for nerdtree-git-plugin
