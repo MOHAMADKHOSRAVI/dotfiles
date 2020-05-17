@@ -100,6 +100,12 @@ set hidden
 " Enable mouse
 "set mouse=a
 
+" Persistant Undo
+set undofile                " Save undos after file closes
+set undodir=~/.vim/undo " where to save undo histories
+set undolevels=1000         " How many undos
+set undoreload=10000        " number of lines to save for undo
+
 " Color Scheme
 set background=dark
 colorscheme palenight
@@ -109,7 +115,23 @@ let g:airline_section_b = '%{FugitiveStatusline()}'
 
 " Neomake(Linter)
 call neomake#configure#automake('nrwi', 500)
+" call pylint using the current python (venv or global)
+let g:neomake_python_maker = {
+    \ 'exe': 'python3',
+    \ 'args': [
+        \ '-f', 'text',
+        \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}"',
+        \ '-r', 'n'
+    \ ],
+    \ 'errorformat':
+        \ '%A%f:%l:%c:%t: %m,' .
+        \ '%A%f:%l: %m,' .
+        \ '%A%f:(%l): %m,' .
+        \ '%-Z%p^%.%#,' .
+        \ '%-G%.%#',
+    \ }
 
+let g:neomake_python_enabled_makers = ['pylint']
 " NERDTree CONFIGURATION
 " Custom Icon for nerdtree-git-plugin
 let g:NERDTreeIndicatorMapCustom = { 
