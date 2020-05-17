@@ -101,6 +101,7 @@ set hidden
 "set mouse=a
 
 " Persistant Undo
+" YOU NEDD TO MKDIR MANUALLY.
 set undofile                " Save undos after file closes
 set undodir=~/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
@@ -132,6 +133,7 @@ let g:neomake_python_maker = {
     \ }
 
 let g:neomake_python_enabled_makers = ['pylint']
+
 " NERDTree CONFIGURATION
 " Custom Icon for nerdtree-git-plugin
 let g:NERDTreeIndicatorMapCustom = { 
