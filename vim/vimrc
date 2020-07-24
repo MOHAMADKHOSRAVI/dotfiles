@@ -17,13 +17,13 @@ Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'neomake/neomake'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " Markdown Preview
 Plug 'sheerun/vim-polyglot' " Syntax Highlighting
 Plug 'pseewald/vim-anyfold' " Language agnostic plugin for folding and motion based on indentation
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 Plug 'drewtempelmeyer/palenight.vim' " Color Scheme
 Plug 'skywind3000/asyncrun.vim', {'for': 'python'} "For run command
+Plug 'mitsuhiko/vim-jinja' " For jinja templating engine
 Plug 'scrooloose/nerdtree' " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin' " Show git status flag
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Sexy NERDTree icon.
@@ -113,26 +113,6 @@ colorscheme palenight
 
 " Fugitive CONFIGURATION
 let g:airline_section_b = '%{FugitiveStatusline()}'
-
-" Neomake(Linter)
-call neomake#configure#automake('nrwi', 500)
-" call pylint using the current python (venv or global)
-let g:neomake_python_maker = {
-    \ 'exe': 'python3',
-    \ 'args': [
-        \ '-f', 'text',
-        \ '--msg-template="{path}:{line}:{column}:{C}: [{symbol}] {msg}"',
-        \ '-r', 'n'
-    \ ],
-    \ 'errorformat':
-        \ '%A%f:%l:%c:%t: %m,' .
-        \ '%A%f:%l: %m,' .
-        \ '%A%f:(%l): %m,' .
-        \ '%-Z%p^%.%#,' .
-        \ '%-G%.%#',
-    \ }
-
-let g:neomake_python_enabled_makers = ['pylint']
 
 " NERDTree CONFIGURATION
 " Custom Icon for nerdtree-git-plugin
