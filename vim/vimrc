@@ -116,7 +116,7 @@ let g:airline_section_b = '%{FugitiveStatusline()}'
 
 " NERDTree CONFIGURATION
 " Custom Icon for nerdtree-git-plugin
-let g:NERDTreeIndicatorMapCustom = { 
+let g:NERDTreeGitStatusIndicatorMapCustom = { 
     \ "Modified"  : "✹",
     \ "Staged"    : "✚",
     \ "Untracked" : "✭",
