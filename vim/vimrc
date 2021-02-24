@@ -28,6 +28,9 @@ Plug 'scrooloose/nerdtree' " NERDTree
 Plug 'Xuyuanp/nerdtree-git-plugin' " Show git status flag
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Sexy NERDTree icon.
 Plug 'ryanoasis/vim-devicons' " Always be last one. Use for show sexy icon.
+" Tmux and Vim navigation lives in harmony also need to change tmux config,
+" see the chrome bookmarks.
+Plug 'christoomey/vim-tmux-navigator'
 
 " End
 " Initialize plugin system
