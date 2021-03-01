@@ -1,7 +1,3 @@
-<style>
-code {color: red;}
-p {font-family: "Monospace"; font-size: 18px;}
-</style>
 <h3>Django Stuff</h3>
 <p>This script is going to help you run <strong><em><code>manage.py</code></em></strong> inside your project instead of <strong><code>python3 manage.py</code></strong>:)</p>
 <p>Beside that it's going to work anywhere in your directories, it's look backward from current dirctory up to your root and execute first match <strong><code>manage.py</code></strong></p>
