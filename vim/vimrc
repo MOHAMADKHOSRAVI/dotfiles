@@ -13,24 +13,31 @@ call plug#begin('~/.vim/plugged')
 " Make sure you use single quotes
 
 " Put plugin here
+" Actually doing something
 Plug 'tpope/vim-fugitive'
 Plug 'ctrlpvim/ctrlp.vim'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " Markdown Preview
-Plug 'sheerun/vim-polyglot' " Syntax Highlighting
 Plug 'pseewald/vim-anyfold' " Language agnostic plugin for folding and motion based on indentation
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
-Plug 'drewtempelmeyer/palenight.vim' " Color Scheme
 Plug 'skywind3000/asyncrun.vim', {'for': 'python'} "For run command
 Plug 'mitsuhiko/vim-jinja' " For jinja templating engine
 Plug 'scrooloose/nerdtree' " NERDTree
-Plug 'Xuyuanp/nerdtree-git-plugin' " Show git status flag
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Sexy NERDTree icon.
-Plug 'ryanoasis/vim-devicons' " Always be last one. Use for show sexy icon.
+Plug 'christoomey/vim-sort-motion' "For sorting import alphabetically
+Plug 'tpope/vim-repeat' "Add repeatablity to plugins whom use it
+Plug 'tpope/vim-surround' "Add surround verb to vim
+Plug 'tpope/vim-commentary' "Comment Things out :)
 " Tmux and Vim navigation lives in harmony also need to change tmux config,
 " see the chrome bookmarks.
 Plug 'christoomey/vim-tmux-navigator'
+
+" Visual Art
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'sheerun/vim-polyglot' " Syntax Highlighting
+Plug 'drewtempelmeyer/palenight.vim' " Color Scheme
+Plug 'Xuyuanp/nerdtree-git-plugin' " Show git status flag
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Sexy NERDTree icon.
+Plug 'ryanoasis/vim-devicons' " Always be last one. Use for show sexy icon.
 
 " End
 " Initialize plugin system
@@ -201,3 +208,7 @@ endif
 
 " map uc to grep word under cursor
 nnoremap <leader>uc :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" For sort-motion plugin
+" To make all sorts case insensitive and remove duplicates
+let g:sort_motion_flags = "ui"
