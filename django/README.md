@@ -1,6 +1,7 @@
 <h3>Django Stuff</h3>
 <p>This script is going to help you run <strong><em><code>manage.py</code></em></strong> inside your project instead of <strong><code>python3 manage.py</code></strong>:)</p>
 <p>Beside that it's going to work anywhere in your directories, it's look backward from current dirctory up to your root and execute first match <strong><code>manage.py</code></strong></p>
+<strong>You can use F10 in vim editor for <code>manage.py runserver</code> command -> This two bind together.
 <br />
 <h4>How it work</h4>
 <p>For this to work you need to place it in <strong><code>/usr/bin</code></strong> and also give it execute permission via <strong><code>chmod</code></strong>
