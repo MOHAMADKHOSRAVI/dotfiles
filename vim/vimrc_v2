@@ -19,7 +19,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() } } " Markdown Preview
 Plug 'pseewald/vim-anyfold' " Language agnostic plugin for folding and motion based on indentation
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
-Plug 'skywind3000/asyncrun.vim', {'for': 'python'} "For run command
+Plug 'skywind3000/asyncrun.vim', {'for': ['python', 'javascript']} "For run command
 Plug 'mitsuhiko/vim-jinja' " For jinja templating engine
 Plug 'scrooloose/nerdtree' " NERDTree
 Plug 'christoomey/vim-sort-motion' "For sorting import alphabetically
@@ -146,7 +146,7 @@ autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 " Ignore files in NERDTree
-let NERDTreeIgnore=['\.pyc$', '\~$', 'venv']
+let NERDTreeIgnore=['\.pyc$', '\~$', 'venv', 'tags']
 
 " For Markdown Preview
 
