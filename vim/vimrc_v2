@@ -30,6 +30,12 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'sheerun/vim-polyglot' " Syntax Highlighting
 Plug 'drewtempelmeyer/palenight.vim' " Color Scheme
+Plug 'Xuyuanp/nerdtree-git-plugin' " Show git status flag
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight' " Sexy NERDTree icon.
+Plug 'ryanoasis/vim-devicons' " Always be last one. Use for show sexy icon.
+Plug 'unblevable/quick-scope' "Highlight character that get you to a word horizontally
+Plug 'junegunn/rainbow_parentheses.vim' "Match color for matching [], {}, ()
+
 " End
 " Initialize plugin system
 call plug#end()
@@ -116,6 +122,20 @@ colorscheme palenight
 let g:airline_section_b = '%{FugitiveStatusline()}'
 
 " NERDTree CONFIGURATION
+" Custom Icon for nerdtree-git-plugin
+let g:NERDTreeGitStatusIndicatorMapCustom = { 
+    \ "Modified"  : "✹",
+    \ "Staged"    : "✚",
+    \ "Untracked" : "✭",
+    \ "Renamed"   : "➜",
+    \ "Unmerged"  : "═",
+    \ "Deleted"   : "✖",
+    \ "Dirty"     : "✗",
+    \ "Clean"     : "✔︎",
+    \ 'Ignored'   : '☒',
+    \ "Unknown"   : "?"
+    \ }
+
 " Toggle NERDTree with <F5>
 map <F5> :NERDTreeToggle<CR>
 
@@ -184,3 +204,18 @@ command! MakeTags AsyncRun ctags -R .
 " - Use g^] for ambiguous tags
 " - Use ^t to jump back up the tag stack
 "   ###################################################################
+" For quickscope
+" Trigger a highlight in the appropriate direction when pressing these keys:
+let g:qs_highlight_on_keys = ['f', 'F', 't', 'T']
+
+highlight QuickScopePrimary guifg='#00C7DF' gui=underline ctermfg=155 cterm=underline
+highlight QuickScopeSecondary guifg='#afff5f' gui=underline ctermfg=81 cterm=underline
+
+let g:qs_max_chars=150
+"   ######################################################################
+"   For rainbow
+let g:rainbow#max_level = 16
+let g:rainbow#pairs = [['(', ')'], ['[', ']'], ['{', '}']]
+
+autocmd FileType * RainbowParentheses
+"   #######################################################################
