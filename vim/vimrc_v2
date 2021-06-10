@@ -106,6 +106,8 @@ set hidden
 
 " Enable mouse
 "set mouse=a
+" Don't show unnecessary messages when doing completion
+set shortmess +=c
 
 " Use alt + hjkl to resize windows
 nnoremap <M-j>    :resize -2<CR>
