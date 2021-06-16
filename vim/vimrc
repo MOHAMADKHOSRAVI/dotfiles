@@ -110,7 +110,7 @@ set hidden
 set shortmess +=c
 
 " Disable automatic continuation of comment to next line.
-set formatoptions-=cro
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " Use alt + hjkl to resize windows
 nnoremap <M-j>    :resize -2<CR>
